@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Switches</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(5, 40px);
+            gap: 8px;
+        }
+        .grid-container button {
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function toggle(buttonId) {
+            let index = buttonId - 1;
+            let row = Math.floor(index / 5);
+            let col = index % 5;
+            let targets = new Set();
+            for (let i = 0; i < 5; i++) {
+                targets.add((row * 5) + i + 1);
+            }
+            for (let i = 0; i < 5; i++) {
+                targets.add((i * 5) + col + 1);
+            }   
+            targets.forEach(id => {
+                let btn = document.getElementById(String(id));
+                if (btn) {
+                    btn.innerHTML = (btn.innerHTML === "I") ? "O" : "I";
+                }
+            });
+            checkWin();
+        }
+        function checkWin() {
+            let allO = true;
+            for (let i = 1; i <= 25; i++) {
+                let btn = document.getElementById(String(i));
+                if (btn && btn.innerHTML !== "O") {
+                    allO = false;
+                    break;
+                }
+            }
+            if (allO) {
+                window.location.href = "puzzle5.html";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="grid-container">
+        <button id="1" onclick="toggle(1)">I</button>
+        <button id="2" onclick="toggle(2)">O</button>
+        <button id="3" onclick="toggle(3)">O</button>
+        <button id="4" onclick="toggle(4)">I</button>
+        <button id="5" onclick="toggle(5)">O</button>
+
+        <button id="6" onclick="toggle(6)">I</button>
+        <button id="7" onclick="toggle(7)">O</button>
+        <button id="8" onclick="toggle(8)">O</button>
+        <button id="9" onclick="toggle(9)">O</button>
+        <button id="10" onclick="toggle(10)">I</button>
+
+        <button id="11" onclick="toggle(11)">O</button>
+        <button id="12" onclick="toggle(12)">O</button>
+        <button id="13" onclick="toggle(13)">O</button>
+        <button id="14" onclick="toggle(14)">O</button>
+        <button id="15" onclick="toggle(15)">O</button>
+
+        <button id="16" onclick="toggle(16)">O</button>
+        <button id="17" onclick="toggle(17)">O</button>
+        <button id="18" onclick="toggle(18)">O</button>
+        <button id="19" onclick="toggle(19)">I</button>
+        <button id="20" onclick="toggle(20)">I</button>
+
+        <button id="21" onclick="toggle(21)">O</button>
+        <button id="22" onclick="toggle(22)">O</button>
+        <button id="23" onclick="toggle(23)">O</button>
+        <button id="24" onclick="toggle(24)">O</button>
+        <button id="25" onclick="toggle(25)">O</button>
+    </div>
+
+</body>
+</html>
